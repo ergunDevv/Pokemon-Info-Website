@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <div >
-      <h1 className="font-semibold font-inter">POKEDEX</h1>
+      <h1 className="m-5 font-semibold font-inter text-white text-5xl">POKEDEX</h1>
       <form className="flex justify-center w-full items-center my-12 mx-0">
         <label
           htmlFor="search"
