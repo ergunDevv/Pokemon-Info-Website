@@ -2,94 +2,105 @@ import React from "react";
 import { colors } from "../components/constants";
 const PokemonDetailPage = ({ pokemonData }) => {
   const { name, base_experience, height, id, weight } = pokemonData;
-  console.log(pokemonData);
+  const colorOfName = pokemonData.types[0].type.name;
   return (
-    <div className="flex flex-col justify-center">
-      <img
-        className="w-96 flex justify-center m-auto p-2"
-        src={pokemonData.sprites.other.dream_world.front_default}
-        alt=""
-      />
-      <h3
-        className={`font-semibold text-3xl text-${pokemonData.types[0].type.name}`}
-      >
-        {name.toUpperCase()}
-      </h3>
-      <p>Hp : {pokemonData.stats[0].base_stat}</p>
-      <p>Attack : {pokemonData.stats[1].base_stat}</p>
-      <p>Defense : {pokemonData.stats[2].base_stat}</p>
-      <p>Special-Attack : {pokemonData.stats[3].base_stat}</p>
-      <p>Speed : {pokemonData.stats[5].base_stat}</p>
-      
-      <div class="flex flex-col">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <table class="min-w-full">
-          <thead class="bg-white border-b">
-            <tr>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                #
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                First
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Last
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Handle
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Mark
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Otto
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                @mdo
-              </td>
-            </tr>
-            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Jacob
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Thornton
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                @fat
-              </td>
-            </tr>
-            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Larry
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Wild
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                @twitter
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <>
+      <div className="flex flex-col justify-center">
+        <img
+          className="w-96 flex justify-center m-auto p-2"
+          src={pokemonData.sprites.other.dream_world.front_default}
+          alt=""
+        />
+        <h3 className={`font-semibold text-3xl text-white`}>
+          {name.toUpperCase()}
+        </h3>
       </div>
-    </div>
-  </div>
-</div>
-      
 
-
-
-    </div>
+      <div className="flex flex-col justify-center mt-10">
+        <div className=" sm:-mx-6 lg:-mx-8">
+          <div className=" py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className=" overflow-hidden ">
+              <table className=" min-w-full ">
+                <tbody className="">
+                  <tr className=" border-b transition duration-300 ease-in-out text-white  hover:bg-gray-100 hover:text-black">
+                    <td className="w-1/2 text-sm  font-extrabold px-6 py-4 whitespace-nowrap ">
+                      Hp
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {pokemonData.stats[0].base_stat}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Attack
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {pokemonData.stats[1].base_stat}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Defense
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {pokemonData.stats[2].base_stat}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black ">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Special-Attack
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {pokemonData.stats[3].base_stat}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Speed
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {pokemonData.stats[5].base_stat}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Experince
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {base_experience}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Height
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {height}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black" >
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Weight
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      {weight}
+                    </td>
+                  </tr>
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      Id
+                    </td>
+                    <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
+                      #{id}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

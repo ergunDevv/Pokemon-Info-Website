@@ -27,6 +27,26 @@ function App() {
     }
     fetchData();
   }, []);
+  const nextData= async () =>{
+    setLoading(true);
+    let data = await getAllPokemon(nextUrl);
+    await loadingPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false)
+
+  }
+  const prevData= async () =>{
+    if(!prevUrl) return;
+    setLoading(true);
+    let data = await getAllPokemon(prevUrl);
+    await loadingPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false)
+
+  }
+  
   const loadingPokemon = async (data) => {
     let _pokemonData = await Promise.all(
       data?.map(async (pokemon) => {
@@ -39,13 +59,21 @@ function App() {
 
   return (
     <>      
+
       <Routes>
-        <Route path="/" element={<Home loading={loading}  pokemonData={pokemonData}/>}/>
+        <Route path="/" element={<Home loading={loading}  pokemonData={pokemonData} prevData={prevData} nextData={nextData}/>}/>
         {pokemonData.map((item,index)=>{
           return  <Route key={index} path={`${item.name}`} element={<PokemonDetailPage pokemonData={item}/>}/>
         })}
         
       </Routes>
+
+      <button onClick={prevData} class="m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Previos Pokemons
+        </button>
+        <button onClick={nextData} class="m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Next Pokemons
+        </button>
     </>
   );
 }

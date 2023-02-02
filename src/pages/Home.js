@@ -4,12 +4,18 @@ import { Link, Route, Router, Routes } from "react-router-dom";
 import { getAllPokemon, getPokemon } from "../components/PokemonFetch";
 import PokemonCards from "../components/PokemonCards";
 import "../styles/App.css";
-const Home = ({pokemonData,loading}) => {
 
+const Home = ({ pokemonData, loading ,prevData,nextData}) => {
   return (
     <div>
-        <div className="App">
+      <div className="App">
         <Header />
+        <button onClick={prevData} class="m-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Previos Pokemons
+        </button>
+        <button onClick={nextData} class="m-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Next Pokemons
+        </button>
 
         {loading ? (
           <h1>Loading...</h1>
@@ -22,7 +28,7 @@ const Home = ({pokemonData,loading}) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
