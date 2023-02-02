@@ -1,15 +1,20 @@
 import React from "react";
 import { colors } from "../components/constants";
+import { Link } from "react-router-dom";
 const PokemonDetailPage = ({ pokemonData }) => {
   const { name, base_experience, height, id, weight } = pokemonData;
-  const colorOfName = pokemonData.types[0].type.name;
   return (
     <>
+    <Link to="/">
+      <button className=" fixed left-0 top-0 m-10 bg-pink-500 hover:bg-blue-300 hover:text-pink-500 text-white font-bold py-2 px-4 rounded">
+         Back to Home
+      </button>
+    </Link>
       <div className="flex flex-col justify-center">
         <img
           className="w-96 flex justify-center m-auto p-2"
           src={pokemonData.sprites.other.dream_world.front_default}
-          alt=""
+          alt="pokemon"
         />
         <h3 className={`font-semibold text-3xl text-white`}>
           {name.toUpperCase()}
@@ -78,7 +83,7 @@ const PokemonDetailPage = ({ pokemonData }) => {
                       {height}
                     </td>
                   </tr>
-                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black" >
+                  <tr className=" border-b transition duration-300 ease-in-out hover:bg-gray-100 text-white hover:text-black">
                     <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
                       Weight
                     </td>

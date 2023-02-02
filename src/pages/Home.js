@@ -14,7 +14,7 @@ const Home = ({
   filteredResults,
   searchInput,
 }) => {
-  console.log(searchInput);
+
   return (
     <div>
       <div className="App">
