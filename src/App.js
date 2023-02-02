@@ -7,19 +7,31 @@ import PokemonCards from "./components/PokemonCards";
 import "./styles/App.css";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
 
-
 function App() {
-
   const [pokemonData, setPokemonData] = useState([]);
   const [nextUrl, setNextUrl] = useState("");
   const [prevUrl, setPrevUrl] = useState("");
   const [loading, setLoading] = useState("");
   const initialUrl = "https://pokeapi.co/api/v2/pokemon";
 
+  // Search
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    if (searchValue !== "") {
+      const filteredData = pokemonData.filter((item) => {  
+        return item.name.includes(searchValue.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+      console.log("filtered data first : ",filteredData)
+    } 
+  };
+
   useEffect(() => {
     async function fetchData() {
       let response = await getAllPokemon(initialUrl);
-      console.log(response);
       setNextUrl(response.next);
       setPrevUrl(response.previous);
       await loadingPokemon(response.results);
@@ -27,26 +39,24 @@ function App() {
     }
     fetchData();
   }, []);
-  const nextData= async () =>{
+  const nextData = async () => {
     setLoading(true);
     let data = await getAllPokemon(nextUrl);
     await loadingPokemon(data.results);
     setNextUrl(data.next);
     setPrevUrl(data.previous);
-    setLoading(false)
-
-  }
-  const prevData= async () =>{
-    if(!prevUrl) return;
+    setLoading(false);
+  };
+  const prevData = async () => {
+    if (!prevUrl) return;
     setLoading(true);
     let data = await getAllPokemon(prevUrl);
     await loadingPokemon(data.results);
     setNextUrl(data.next);
     setPrevUrl(data.previous);
-    setLoading(false)
+    setLoading(false);
+  };
 
-  }
-  
   const loadingPokemon = async (data) => {
     let _pokemonData = await Promise.all(
       data?.map(async (pokemon) => {
@@ -58,22 +68,39 @@ function App() {
   };
 
   return (
-    <>      
-
+    <>
       <Routes>
-        <Route path="/" element={<Home loading={loading}  pokemonData={pokemonData} prevData={prevData} nextData={nextData}/>}/>
+        <Route
+          path="/"
+          element={
+            <Home
+              loading={loading}
+              pokemonData={pokemonData}
+              searchItems={searchItems}
+              prevData={prevData}
+              nextData={nextData}
+              searchInput={searchInput}
+              filteredResults={filteredResults}
+            />
+          }
+        />
         {pokemonData.map((item,index)=>{
           return  <Route key={index} path={`${item.name}`} element={<PokemonDetailPage pokemonData={item}/>}/>
         })}
-        
       </Routes>
 
-      <button onClick={prevData} class="m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Previos Pokemons
-        </button>
-        <button onClick={nextData} class="m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button
+        onClick={prevData}
+        className="m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Previos Pokemons
+      </button>
+      <button
+        onClick={nextData}
+        className="m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
         Next Pokemons
-        </button>
+      </button>
     </>
   );
 }
