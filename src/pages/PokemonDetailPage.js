@@ -91,7 +91,7 @@ const PokemonDetailPage = ({ pokemonData }) => {
                       Id
                     </td>
                     <td className="text-sm  font-extrabold px-6 py-4 whitespace-nowrap">
-                      #{id}
+                      #{id.toString().padStart(3, "0")}
                     </td>
                   </tr>
                 </tbody>
