@@ -1,5 +1,19 @@
 Pokedex -Pokemon Info Website
+Live at : https://pokedex-pokemonn.netlify.app
 
-![pokedex](https://user-images.githubusercontent.com/89292621/215798522-0edd4770-5422-4e87-a944-962d7e867e23.png)
+Used Technologies:
 
+React ⚛️
+
+Tailwind 🖼️
+
+Html 🖥️
+
+Javascript 📊
+
+In Website Photos :
+
+![pokemon](https://user-images.githubusercontent.com/89292621/216622246-09c556ad-6bc8-41d1-9b6a-c766f519be0c.png)
+
+![pokemonBalbasaur](https://user-images.githubusercontent.com/89292621/216622028-4d9670a8-b0c5-4182-b891-80e80cc70172.png)
 
